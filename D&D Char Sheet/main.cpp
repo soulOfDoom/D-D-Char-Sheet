@@ -13,13 +13,23 @@ using namespace std;
 
 int abillMod (int abill);
 
+int raceMod (int race, int conRaceMod, int chaRaceMod, int dexRaceMod, int strRaceMod, int intelRaceMod);
+
 int main () {
     
     //define variables
     char name[50];
+    char raceName[9];
+    int race;
+    int conRaceMod;
+    int chaRaceMod;
+    int dexRaceMod;
+    int strRaceMod;
+    int intelRaceMod;
+    int clas;
     int str;
     int con;
-    int agi;
+    int dex;
     int intel;
     int wis;
     int cha;
@@ -28,14 +38,44 @@ int main () {
     cout << "Enter name: ";
     cin >> name;
     
+    cout << "__________________\n"
+            "|                |\n"
+            "|  1 - Barbarian |\n"
+            "|  2 - Bard      |\n"
+            "|  3 - Cleric    |\n"
+            "|  4 - Druid     |\n"
+            "|  5 - Fighter   |\n"
+            "|  6 - Monk      |\n"
+            "|  7 - Paladin   |\n"
+            "|  8 - Ranger    |\n"
+            "|  9 - Rogue     |\n"
+            "| 10 - Sorcerer  |\n"
+            "| 11 - Wizard    |\n"
+            "|________________|\n\n"
+            "Enter class: ";
+    cin >> clas;
+    
+    cout << "________________\n"
+            "|              |\n"
+            "| 1 - Human    |\n"
+            "| 2 - Dwarf    |\n"
+            "| 3 - Elf      |\n"
+            "| 4 - Gnome    |\n"
+            "| 5 - Half-Elf |\n"
+            "| 6 - Half-Orc |\n"
+            "| 7 - Halfling |\n"
+            "|______________|\n\n"
+            "Enter race: ";
+    cin >> race;
+    
     cout << "Roll 4d6 for STR: ";
     cin >> str;
     
     cout << "Roll 4d6 for CON: ";
     cin >> con;
     
-    cout << "Roll 4d6 for AGI: ";
-    cin >> agi;
+    cout << "Roll 4d6 for DEX: ";
+    cin >> dex;
     
     cout << "Roll 4d6 for INT: ";
     cin >> intel;
@@ -46,24 +86,69 @@ int main () {
     cout << "Roll 4d6 for CHA: ";
     cin >> cha;
     
+    //find race mods
+    if (race == 1) {
+        const char raceName[9] = "Human";
+    }
+    
+    if (race == 2) {
+        const char raceName[9] = "Dwarf";
+        dexRaceMod = 2;
+        conRaceMod = -2;
+    }
+    
+    if (race == 3) {
+        const char raceName[9] = "Elf";
+        conRaceMod = 2;
+        strRaceMod = -2;
+    }
+    
+    if (race == 4) {
+        const char raceName[9] = "Gnome";
+        conRaceMod = 2;
+        strRaceMod = -2;
+    }
+    
+    if (race == 5) {
+        const char raceName[9] = "Half-Elf";
+    }
+    
+    if (race == 6) {
+        const char raceName[9] = "Half-Orc";
+        strRaceMod = 2;
+        intelRaceMod = -2;
+        chaRaceMod = -2;
+    }
+    
+    if (race == 7) {
+        const char raceName[9] = "Halfling";
+        dexRaceMod = 2;
+        strRaceMod = -2;
+    }
+    
     ofstream myfile;
     ofstream myfile2;
     
     myfile.open ("D&D_Sheet.txt");
     myfile2.open("dnds.txt");
     
-    myfile << "Name: " << name << "\n\n" <<
+    //write to files
+    myfile << "Name: " << name << "\n" <<
+    
+    "Race: " << raceName << "\n\n" <<
     "STR: " << str << "   Mod: " << abillMod(str) << "\n" <<
     "CON: " << con << "   Mod: " << abillMod(con) << "\n" <<
-    "AGI: " << agi << "   Mod: " << abillMod(agi) << "\n" <<
+    "DEX: " << dex << "   Mod: " << abillMod(dex) << "\n" <<
     "INT: " << intel << "   Mod: " << abillMod(intel) << "\n" <<
     "WIS: " << wis << "   Mod: " << abillMod(wis) << "\n" <<
     "CHA: " << cha << "   Mod: " << abillMod(cha) << "\n";
     
-    myfile2 << name << "\n\n" <<
+    myfile2 << name << "\n" <<
+    clas << "\n" <<
+    race << "\n" <<
     str << "\n" << abillMod(str) << "\n" <<
     con << "\n" << abillMod(con) << "\n" <<
-    agi << "\n" << abillMod(agi) << "\n" <<
+    dex << "\n" << abillMod(dex) << "\n" <<
     intel << "\n" << abillMod(intel) << "\n" <<
     wis << "\n" << abillMod(wis) << "\n" <<
     cha << "\n" << abillMod(cha) << "\n";
@@ -77,7 +162,7 @@ int main () {
 int abillMod (int abill) {
     
     if (abill < 10 && abill %2 == 1) {
-        return((abill - 10) / 2 - 1);
+        return ((abill - 10) / 2 - 1);
     }
     
     else {
