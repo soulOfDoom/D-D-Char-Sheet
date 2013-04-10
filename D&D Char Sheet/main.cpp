@@ -13,13 +13,17 @@ using namespace std;
 
 int abillMod (int abill);
 
-int raceMod (int race, int conRaceMod, int chaRaceMod, int dexRaceMod, int strRaceMod, int intelRaceMod);
-
 int main () {
     
     //define variables
     char name[50];
     char raceName[9];
+    int str;
+    int con;
+    int dex;
+    int intel;
+    int wis;
+    int cha;
     int race;
     int conRaceMod;
     int chaRaceMod;
@@ -27,12 +31,10 @@ int main () {
     int strRaceMod;
     int intelRaceMod;
     int clas;
-    int str;
-    int con;
-    int dex;
-    int intel;
-    int wis;
-    int cha;
+    int baseAttackRate;
+    int fortGoodBad;
+    int refGoodBad;
+    int willGoodBad;
     
     //get user inputs
     cout << "Enter name: ";
@@ -124,6 +126,84 @@ int main () {
         const char raceName[9] = "Halfling";
         dexRaceMod = 2;
         strRaceMod = -2;
+    }
+    
+    //class mods
+    if (clas == 1) {
+        baseAttackRate = 2;    //2 = good base att, 1 = average base att, 0 = poor base att
+        fortGoodBad = 1;
+        refGoodBad = 0;    //1 = good save, 0 = poor save
+        willGoodBad = 0;
+    }
+    
+    if (clas == 2) {
+        baseAttackRate = 1;
+        fortGoodBad = 0;
+        refGoodBad = 1;
+        willGoodBad = 1;
+    }
+    
+    if (clas == 3) {
+        baseAttackRate = 1;
+        fortGoodBad = 1;
+        refGoodBad = 0;
+        willGoodBad = 1;
+    }
+    
+    if (clas == 4) {
+        baseAttackRate = 1;
+        fortGoodBad = 1;
+        refGoodBad = 0;
+        willGoodBad = 1;
+    }
+    
+    if (clas == 5) {
+        baseAttackRate = 2;
+        fortGoodBad = 1;
+        refGoodBad = 0;
+        willGoodBad = 0;
+    }
+    
+    if (clas == 6) {
+        baseAttackRate = 1;
+        fortGoodBad = 1;
+        refGoodBad = 1;
+        willGoodBad = 1;
+    }
+    
+    if (clas == 7) {
+        baseAttackRate = 2;
+        fortGoodBad = 1;
+        refGoodBad = 0;
+        willGoodBad = 0;
+    }
+    
+    if (clas == 8) {
+        baseAttackRate = 2;
+        fortGoodBad = 1;
+        refGoodBad = 1;
+        willGoodBad = 0;
+    }
+    
+    if (clas == 9) {
+        baseAttackRate = 1;
+        fortGoodBad = 0;
+        refGoodBad = 1;
+        willGoodBad = 0;
+    }
+    
+    if (clas == 10) {
+        baseAttackRate = 0;
+        fortGoodBad = 0;
+        refGoodBad = 0;
+        willGoodBad = 1;
+    }
+    
+    if (clas == 11) {
+        baseAttackRate = 0;
+        fortGoodBad = 0;
+        refGoodBad = 0;
+        willGoodBad = 1;
     }
     
     ofstream myfile;
